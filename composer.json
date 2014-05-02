@@ -1,5 +1,5 @@
 {
-    "name": "linestorm-gallery-component-bundle",
+    "name": "linestorm/gallery-component-bundle",
     "description": "Gallery component for LineStorm Content for symfony 2.3",
     "require": {
         "php": ">=5.3.0",
