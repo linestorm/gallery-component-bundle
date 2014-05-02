@@ -1,0 +1,25 @@
+parameters:
+  linestorm.content.component.gallery.class:     LineStorm\GalleryComponentBundle\Component\GalleryComponent
+
+services:
+  linestorm.content.component.gallery:
+    class: %linestorm.content.component.gallery.class%
+    tags:
+      - { name: linestorm.content.component }
+
+  linestorm.content.component.gallery.dropzone_widget:
+        class: LineStorm\GalleryComponentBundle\Form\Type\DropZoneType
+        tags:
+            - { name: form.type, alias: dropzone }
+
+  linestorm.content.component.gallery.form:
+        class: LineStorm\GalleryComponentBundle\Form\GalleryType
+        arguments: [@linestorm.cms.model_manager]
+        tags:
+            - { name: form.type, alias: linestorm_component_gallery }
+
+  linestorm.content.component.gallery.image.form:
+        class: LineStorm\GalleryComponentBundle\Form\GalleryImageType
+        arguments: [@linestorm.cms.model_manager]
+        tags:
+            - { name: form.type, alias: linestorm_component_gallery_image }

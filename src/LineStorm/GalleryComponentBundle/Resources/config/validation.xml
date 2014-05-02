@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="LineStorm\GalleryComponentBundle\Model\Gallery">
+      <property name="images">
+        <constraint name="Count">
+          <option name="min">2</option>
+          <option name="minMessage">You must have at least {{ limit }} images in a gallery</option>
+        </constraint>
+      </property>
+
+      <property name="body">
+        <constraint name="NotNull">
+          <option name="message">A body must be added</option>
+        </constraint>
+      </property>
+    </class>
+
+</constraint-mapping>
