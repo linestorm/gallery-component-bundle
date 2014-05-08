@@ -5,6 +5,7 @@ namespace LineStorm\GalleryComponentBundle\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use LineStorm\Content\Model\ContentNodeInterface;
 
 class Gallery
 {
@@ -28,6 +29,11 @@ class Gallery
      * @var GalleryImage[]
      */
     protected $images;
+
+    /**
+     * @var ContentNodeInterface
+     */
+    protected $contentNode;
 
     /**
      * Constructor
@@ -112,6 +118,23 @@ class Gallery
     {
         return $this->body;
     }
+
+    /**
+     * @param ContentNodeInterface $contentNode
+     */
+    public function setContentNode(ContentNodeInterface $contentNode)
+    {
+        $this->contentNode = $contentNode;
+    }
+
+    /**
+     * @return ContentNodeInterface
+     */
+    public function getContentNode()
+    {
+        return $this->contentNode;
+    }
+
 
 
 }
