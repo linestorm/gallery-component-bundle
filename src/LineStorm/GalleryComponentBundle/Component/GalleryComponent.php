@@ -4,8 +4,8 @@ namespace LineStorm\GalleryComponentBundle\Component;
 
 use LineStorm\Content\Component\AbstractBodyComponent;
 use LineStorm\Content\Component\ComponentInterface;
-use LineStorm\PostBundle\Model\PostGallery;
 use LineStorm\Content\Component\View\ComponentView;
+use LineStorm\GalleryComponentBundle\Model\Gallery;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -25,7 +25,7 @@ class GalleryComponent extends AbstractBodyComponent implements ComponentInterfa
      */
     public function isSupported($entity)
     {
-        return ($entity instanceof PostGallery);
+        return ($entity instanceof Gallery);
     }
 
     /**
