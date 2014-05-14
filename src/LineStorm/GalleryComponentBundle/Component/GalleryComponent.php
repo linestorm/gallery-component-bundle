@@ -17,8 +17,25 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class GalleryComponent extends AbstractBodyComponent implements ComponentInterface
 {
-    protected $name = 'Gallery';
-    protected $id = 'galleries';
+    /**
+     * Fetch the component id string
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return 'galleries';
+    }
+
+    /**
+     * Fetch the component name
+     *
+     * @return mixed
+     */
+    public function getName()
+    {
+        return  'Gallery';
+    }
 
     /**
      * @inheritdoc
