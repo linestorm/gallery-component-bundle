@@ -60,7 +60,7 @@ class GalleryComponent extends AbstractBodyComponent implements ComponentInterfa
      */
     public function getView($entity)
     {
-        return new ComponentView('LineStormGalleryComponent::view.html.twig');
+        return new ComponentView('LineStormGalleryComponentBundle::view.html.twig');
     }
 
     /**

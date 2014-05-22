@@ -1,4 +1,4 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic-{{ content.id }}" class="carousel slide" data-interval="false" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         {% for image in content.images %}
@@ -19,10 +19,10 @@
     </div>
 
     <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <a class="left carousel-control" href="#carousel-example-generic-{{ content.id }}" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
-    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <a class="right carousel-control" href="#carousel-example-generic-{{ content.id }}" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div>
