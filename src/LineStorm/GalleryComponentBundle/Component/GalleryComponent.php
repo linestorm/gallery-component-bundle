@@ -78,4 +78,13 @@ class GalleryComponent extends AbstractBodyComponent implements ComponentInterfa
             ))
         ;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getFormFields()
+    {
+        // forms are loaded asyncronously, so just return nothing
+        return array();
+    }
 }
