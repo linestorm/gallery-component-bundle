@@ -16,11 +16,6 @@ class Gallery
     protected $id;
 
     /**
-     * @var string
-     */
-    protected $body;
-
-    /**
      * @var integer
      */
     protected $order;
@@ -101,22 +96,6 @@ class Gallery
     public function getOrder()
     {
         return $this->order;
-    }
-
-    /**
-     * @param string $body
-     */
-    public function setBody($body)
-    {
-        $this->body = $body;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBody()
-    {
-        return $this->body;
     }
 
     /**

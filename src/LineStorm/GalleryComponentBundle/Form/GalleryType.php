@@ -15,20 +15,13 @@ class GalleryType extends AbstractCmsFormType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('images', 'dropzone', array(
+            ->add('images', 'collection', array(
                 'type'      => 'linestorm_component_gallery_image',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'label' => false,
                 'prototype_name' => '__img_name__'
-            ))
-            ->add('body', 'textarea', array(
-                'attr' => array(
-                    'class' => 'ckeditor-textarea gallery-body',
-                ),
-                'label' => false,
-                //'inline' => true,
             ))
             ->add('order', 'hidden')
 

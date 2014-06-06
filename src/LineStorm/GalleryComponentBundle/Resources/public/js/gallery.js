@@ -1,63 +1,93 @@
-define(['jquery', 'dropzone', 'jckeditor'], function ($, Dropzone, ckeditor) {
-
-    Dropzone.autoDiscover = false;
-
-    function setupDropzone(placeholder){
-
-        var $p = $(placeholder),
-            localCount;
-
-        contentCounts.gallery_images[contentCounts.galleries.count] = {count: $p.find('.dz-preview').length || 0};
-        localCount = contentCounts.gallery_images[contentCounts.galleries.count];
-
-        // bind the remove button as it won't be set by dropzone on init
-        $p.find('.dz-remove').on('click', function(){
-            $(this).closest('.dz-preview').remove();
-        });
-
-        new Dropzone(placeholder, {
-            url: window.lineStormTags.mediaBank.upload,
-            acceptedFiles: 'image/*',
-            init: function(){
-                this.on("success", function(file, response) {
-                    if(file.xhr.status == 200){
-                        alert('An identical file already exists and has been returned.');
-                    }
-                    var dzForm = $(file.previewElement).find('.dz-image-form'),
-                        idx = localCount.count
-                        ;
-                    var $form = addForm(dzForm, $(placeholder).data('prototype'), localCount, '__img_name__');
-
-                    $form.find('input[name$="[hash]"]').val(response.hash);
-                    $form.find('input[name$="[src]"]').val(response.src);
-
-                    $form.find('input[name$="[title]"]').val(response.title);
-                    $form.find('textarea[name$="[description]"]').val(response.description);
-                    $form.find('input[name$="[credits]"]').val(response.credits);
-                    $form.find('input[name$="[alt]"]').val(response.alt);
-                    $form.find('input[name$="[seo]"]').val(response.seo);
-
-                    $form.find('input[name$="[order]"]').val(idx);
-                });
-                this.on("error", function(file, response) {
-                    this.removeFile(file);
-                    alert("Cannot add file:\n\n"+response.error);
-                });
-                this.on("removedfile", function(file){
-                });
-            },
-            previewTemplate: $p.data('preview')
-        });
-    }
+define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, ui, mTree, api) {
 
     $(document).on('widget-init', '.item-galleries', function(){
 
         var $el = $(this);
 
         $el.find('input[name$="[order]"]').filter(function(){ return this.name.match(/\[galleries\]\[\d+\]\[order\]$/); }).val(contentCounts.components);
-        $el.find('textarea.ckeditor-textarea').ckeditor().focus();
 
-        setupDropzone($el.find('.dropzone')[0]);
+        var $galleryItemContainer = $el.find('.gallery-items-container');
+
+        var $browserRowToggle = $el.find('.media-browser-show');
+        var $browserRow = $el.find('.media-browser-row');
+        var imageCount = $galleryItemContainer.children().length;
+        var $tree = $el.find('.media-tree');
+        var tree = mTree.mediaTree($tree, {
+            multiple: true
+        });
+
+        if($galleryItemContainer.children().length){
+            $browserRow.hide();
+            $browserRowToggle.show();
+        } else {
+            $browserRowToggle.hide();
+        }
+
+        $browserRowToggle.on('click', function(){
+            $browserRow.slideDown();
+            $browserRowToggle.slideUp();
+            return false;
+        });
+
+        $el.find('.select-media').on('click', function(){
+            var nodes = [], categories = [], selected = $tree.jstree('get_selected', true);
+
+            for(var i in selected){
+                switch(selected[i].type){
+                    case "default":
+                        categories.push(selected[i].original.id);
+                        break;
+                    case "file":
+                        nodes.push(selected[i].original.id);
+                        break;
+                }
+            }
+
+
+            api.call($(this).data('url'), {
+                data : {
+                    nodes: nodes,
+                    categories: categories
+                },
+                dataType: 'json',
+                success: function(ob){
+                    for(var i in ob){
+                        var $template, template, node = ob[i];
+
+                        template = $galleryItemContainer.data('prototype');
+                        template = template.replace(/__name__/g, window.contentCounts.components).replace(/__img_name__/g, imageCount);
+
+                        $template = $(template);
+                        $template.find('.upload-image-thumbnail').attr('src', node.src);
+                        $template.find('.upload-image-id').val(node.id);
+                        $template.find('.upload-image-title').text(node.title);
+                        $template.find('.upload-order').val(imageCount);
+
+                        ++imageCount;
+                        $galleryItemContainer.append($template);
+                    }
+                }
+            });
+        });
+
+        $el.on('click', '.upload-remove', function(){
+            $(this).closest('.upload-tile').remove();
+        });
+
+
+        $galleryItemContainer.sortable({
+            items: '> .upload-tile',
+            stop:function(e,ui){
+
+                // update the order
+                $galleryItemContainer.children('.upload-tile').each(function(i, li){
+                    var $li = $(li);
+                    var $order = $li.find('input[name*="[order]"]');
+                    $order.val(i);
+                });
+            }
+        });
+        $galleryItemContainer.disableSelection();
     });
 
 

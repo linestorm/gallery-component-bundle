@@ -21,7 +21,9 @@ class GalleryImageType extends AbstractCmsFormType
                     'style' => 'height:200px;'
                 ),
             ))
-            ->add('image' , 'linestorm_cms_form_media')
+            ->add('image' , 'mediaentity', array(
+
+            ))
             ->add('order', 'hidden')
         ;
     }
