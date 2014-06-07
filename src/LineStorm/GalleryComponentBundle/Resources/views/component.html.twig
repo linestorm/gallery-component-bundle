@@ -1,0 +1,51 @@
+{% form_theme form 'LineStormPollComponentBundle:Form:fields.html.twig' %}
+
+{% import _self as fn %}
+{% macro dzPreview(form) %}
+    {% spaceless %}
+        <div class="upload-tile">
+            <div class="upload-preview">
+                <div class="upload-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                <img class="upload-image-thumbnail" data-dz-thumbnail src="{% if form.image.vars.media %}{{ form.image.vars.media.src }}{% endif %}" />
+            </div>
+
+            <button type="button" class="btn btn-danger upload-remove" tabindex="-1" data-dz-remove><i class="fa-times"></i></button>
+
+            <div class="upload-form-container">
+                <div class="upload-form-item" id="{{ form.vars.form.vars.id }}___name__">
+                    <p class="upload-image-title">{% if form.image.vars.media %}{{ form.image.vars.media.title }}{% endif %}</p>
+                    {{ form_widget(form.body, {attr: {placeholder: 'Body', class: 'upload-textarea'} }) }}
+                    {{ form_widget(form.image, {attr: {class: 'upload-image-id'}}) }}
+                    {{ form_widget(form.order, {attr: {class: 'upload-order'}}) }}
+                </div>
+                <p>
+
+                </p>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
+<h4>Gallery</h4>
+<a class="media-browser-show" href="#"><i class="fa-cloud-upload"></i> Add Images</a>
+<div class="row media-browser-row">
+    <div class="col-xs-12">
+        {{ include('LineStormMediaBundle:Form:select.html.twig') }}
+
+        <button type="button" class="btn btn-default select-media" data-url="{{ url('linestorm_cms_module_media_api_get_media_tree_expanded') }}">
+            <i class="fa-check-square-o"></i> Use Selected Media
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        {{ form_widget(form.order) }}
+        <div class="gallery-items-container" data-prototype="{{ fn.dzPreview(form.images.vars.prototype)|e('html_attr') }}">
+
+            {% for img in  form.images %}
+                {{ fn.dzPreview(img) }}
+            {% endfor %}
+        </div>
+    </div>
+</div>

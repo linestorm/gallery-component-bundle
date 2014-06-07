@@ -7,6 +7,7 @@ use LineStorm\Content\Component\ComponentInterface;
 use LineStorm\Content\Component\View\ComponentView;
 use LineStorm\GalleryComponentBundle\Model\Gallery;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormView;
 
 /**
  * Provides image gallery component
@@ -61,6 +62,17 @@ class GalleryComponent extends AbstractBodyComponent implements ComponentInterfa
     public function getView($entity)
     {
         return new ComponentView('LineStormGalleryComponentBundle::view.html.twig');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getForm(FormView $view)
+    {
+        return $this->container->get('templating')->render('LineStormGalleryComponentBundle::component.html.twig', array(
+            'form'          => $view,
+            'component'     => $this,
+        ));
     }
 
     /**
