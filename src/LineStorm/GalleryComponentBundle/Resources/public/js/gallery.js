@@ -30,15 +30,15 @@ define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, 
         });
 
         $el.find('.select-media').on('click', function(){
-            var nodes = [], categories = [], selected = $tree.jstree('get_selected', true);
+            var nodes = [], categories = [], selected = tree.tree.jstree('get_selected', true);
 
             for(var i in selected){
                 switch(selected[i].type){
                     case "default":
-                        categories.push(selected[i].original.id);
+                        categories.push(selected[i].original.node.id);
                         break;
                     case "file":
-                        nodes.push(selected[i].original.id);
+                        nodes.push(selected[i].original.node.id);
                         break;
                 }
             }
