@@ -11,7 +11,7 @@ define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, 
         var $browserRowToggle = $el.find('.media-browser-show');
         var $browserRow = $el.find('.media-browser-row');
         var imageCount = $galleryItemContainer.children().length;
-        var $tree = $el.find('.media-tree');
+        var $tree = $el.find('.media-browser');
         var tree = mTree.mediaTree($tree, {
             multiple: true
         });
