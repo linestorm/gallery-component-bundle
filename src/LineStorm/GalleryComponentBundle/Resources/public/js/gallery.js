@@ -87,12 +87,13 @@ define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, 
                 });
             }
         });
-        $galleryItemContainer.disableSelection();
+
+        //$galleryItemContainer.disableSelection();
     });
 
 
     // add ckeditor to all the pre-loaded articles
-    $('.post-component-item.item-galleries').each(function(){
+    $('.content-component-item.item-galleries').each(function(){
         $(this).trigger('widget-init');
     });
 });
