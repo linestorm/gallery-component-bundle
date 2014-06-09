@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <mapped-superclass name="LineStorm\GalleryComponentBundle\Model\Gallery" table="content_gallery">
 
-    <field name="order" type="integer" column="post_order" precision="0" scale="0" nullable="false"/>
+    <field name="order" type="integer" column="post_order" precision="0" scale="0" nullable="true"/>
 
   </mapped-superclass>
 </doctrine-mapping>
