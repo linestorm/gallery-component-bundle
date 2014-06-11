@@ -17,12 +17,10 @@ class GalleryImageType extends AbstractCmsFormType
     {
         $builder
             ->add('body', 'textarea', array(
-                'attr' => array(
-                    'style' => 'height:200px;'
-                ),
+                'required' => false,
             ))
             ->add('image' , 'mediaentity', array(
-
+                'required' => true,
             ))
             ->add('order', 'hidden')
         ;
