@@ -45,10 +45,10 @@ define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, 
                         template = template.replace(/__name__/g, window.contentCounts.components).replace(/__img_name__/g, imageCount);
 
                         $template = $(template);
-                        $template.find('.upload-image-thumbnail').attr('src', node.src);
-                        $template.find('.upload-image-id').val(node.id);
-                        $template.find('.upload-image-title').text(node.title);
-                        $template.find('.upload-order').val(imageCount);
+                        $template.find('.media-image-thumbnail').attr('src', node.src);
+                        $template.find('.media-image-id').val(node.id);
+                        $template.find('.media-image-title').text(node.title);
+                        $template.find('.media-order').val(imageCount);
 
                         ++imageCount;
                         $galleryItemContainer.append($template);
@@ -58,17 +58,17 @@ define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, 
             });
         });
 
-        $el.on('click', '.upload-remove', function(){
-            $(this).closest('.upload-tile').remove();
+        $el.on('click', '.media-remove', function(){
+            $(this).closest('.media-tile').remove();
         });
 
 
         $galleryItemContainer.sortable({
-            items: '> .upload-tile',
+            items: '> .media-tile',
             stop:function(e,ui){
 
                 // update the order
-                $galleryItemContainer.children('.upload-tile').each(function(i, li){
+                $galleryItemContainer.children('.media-tile').each(function(i, li){
                     var $li = $(li);
                     var $order = $li.find('input[name*="[order]"]');
                     $order.val(i);

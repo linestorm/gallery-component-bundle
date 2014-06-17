@@ -3,20 +3,20 @@
 {% import _self as fn %}
 {% macro dzPreview(form) %}
     {% spaceless %}
-        <div class="upload-tile">
-            <div class="upload-preview">
-                <div class="upload-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                <img class="upload-image-thumbnail" data-dz-thumbnail src="{% if form.image.vars.media %}{{ form.image.vars.media.src }}{% endif %}" />
+        <div class="media-tile">
+            <div class="media-preview">
+                <div class="media-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                <img class="media-image-thumbnail" data-dz-thumbnail src="{% if form.image.vars.media %}{{ form.image.vars.media.src }}{% endif %}" />
             </div>
 
-            <button type="button" class="btn btn-danger upload-remove" tabindex="-1" data-dz-remove><i class="fa-times"></i></button>
+            <button type="button" class="btn btn-danger media-remove" tabindex="-1" data-dz-remove><i class="fa-times"></i></button>
 
-            <div class="upload-form-container">
-                <div class="upload-form-item" id="{{ form.vars.form.vars.id }}___name__">
-                    <p class="upload-image-title">{% if form.image.vars.media %}{{ form.image.vars.media.title }}{% endif %}</p>
-                    {{ form_widget(form.body, {attr: {placeholder: 'Body', class: 'upload-textarea'} }) }}
-                    {{ form_widget(form.image, {attr: {class: 'upload-image-id'}}) }}
-                    {{ form_widget(form.order, {attr: {class: 'upload-order'}}) }}
+            <div class="media-form-container">
+                <div class="media-form-item" id="{{ form.vars.form.vars.id }}___name__">
+                    <p class="media-image-title">{% if form.image.vars.media %}{{ form.image.vars.media.title }}{% endif %}</p>
+                    {{ form_widget(form.body, {attr: {placeholder: 'Body', class: 'media-textarea'} }) }}
+                    {{ form_widget(form.image, {attr: {class: 'media-image-id'}}) }}
+                    {{ form_widget(form.order, {attr: {class: 'media-order'}}) }}
                 </div>
                 <p>
 
