@@ -35,6 +35,7 @@ class GalleryController extends Controller
         }
 
         return $this->render('LineStormGalleryComponentBundle:Gallery:display.html.twig', array(
+            'image_idx' => $image,
             'gallery' => $gallery,
             'image'  => $galleryImage->getImage(),
             'module' => $module,
