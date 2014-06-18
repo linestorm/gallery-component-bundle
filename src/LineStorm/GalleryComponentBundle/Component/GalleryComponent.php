@@ -6,6 +6,7 @@ use LineStorm\Content\Component\AbstractBodyComponent;
 use LineStorm\Content\Component\ComponentInterface;
 use LineStorm\Content\Component\View\ComponentView;
 use LineStorm\GalleryComponentBundle\Model\Gallery;
+use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 
@@ -99,4 +100,14 @@ class GalleryComponent extends AbstractBodyComponent implements ComponentInterfa
         // forms are loaded asyncronously, so just return nothing
         return array();
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getRoutes(Loader $loader)
+    {
+        return $loader->import('@LineStormGalleryComponentBundle/Resources/config/routing.yml', 'yaml');
+    }
+
+
 }
