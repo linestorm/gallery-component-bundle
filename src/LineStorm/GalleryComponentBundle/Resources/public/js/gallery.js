@@ -4,7 +4,12 @@ define(['jquery', 'jqueryui', 'cms_media_treebrowser', 'cms_api'], function ($, 
 
         var $el = $(this);
 
-        $el.find('input[name$="[order]"]').filter(function(){ return this.name.match(/\[galleries\]\[\d+\]\[order\]$/); }).val(contentCounts.components);
+        var $orderEl = $el.find('input[name$="[order]"]').not('.media-order');
+        $orderEl.filter(function(){ return this.name.match(/\[galleries\]\[\d+\]\[order\]$/); });
+        $orderEl.each(function(){
+            if(!this.value)
+                $(this).val(contentCounts.components);
+        });
 
         var $galleryItemContainer = $el.find('.gallery-items-container');
 

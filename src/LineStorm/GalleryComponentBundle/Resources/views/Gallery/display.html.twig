@@ -4,7 +4,7 @@
     <img src="{{ image.src }}" class="img-responsive" />
 
     <ul class="pager">
-        <li class="previous {% if image_idx == 0 %}disabled{% endif %}"><a id="gallery-prev" href="#">&larr; Prev</a></li>
-        <li class="next {% if image_idx == gallery.images|length -1 %}disabled{% endif %}"><a id="gallery-next" href="#">Next &rarr;</a></li>
+        <li class="previous {% if image_idx == 1 %}disabled{% endif %}"><a id="gallery-prev" href="#">&larr; Prev</a></li>
+        <li class="next {% if image_idx == gallery.images|length %}disabled{% endif %}"><a id="gallery-next" href="#">Next &rarr;</a></li>
     </ul>
 {% endblock %}
