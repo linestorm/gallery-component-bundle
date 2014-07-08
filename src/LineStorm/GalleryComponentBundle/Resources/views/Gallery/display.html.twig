@@ -1,7 +1,7 @@
 {% extends 'LineStormCmsBundle::layout.html.twig' %}
 
 {% block body %}
-    <img src="{{ image.src }}" class="img-responsive" />
+    <img src="{{ image.getVersion('large').src }}" class="img-responsive" />
 
     <ul class="pager">
         <li class="previous {% if image_idx == 1 %}disabled{% endif %}"><a id="gallery-prev" href="#">&larr; Prev</a></li>

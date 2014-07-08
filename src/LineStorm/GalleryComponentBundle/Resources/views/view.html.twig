@@ -10,7 +10,15 @@
     <div class="carousel-inner">
         {% for image in content.images %}
             <div class="item {% if loop.first %}active{% endif %}">
-                <img src="{{ image.image.src }}" alt="{{ image.image.alt }}"  class="img-responsive" />
+
+                <img class="article-image bttrlazyloading img-responsive lazy-load-image"
+                     data-bttrlazyloading-xs='{"src": "{{ image.image.getVersion('small').src }}", "width" : {{ image.image.getVersion('small').width }},  "height" : {{ image.image.getVersion('small').height }}}'
+                     data-bttrlazyloading-sm='{"src": "{{ image.image.getVersion('small').src }}", "width" : {{ image.image.getVersion('small').width }},  "height" : {{ image.image.getVersion('small').height }}}'
+                     data-bttrlazyloading-md='{"src": "{{ image.image.getVersion('medium').src }}", "width" : {{ image.image.getVersion('medium').width }},  "height" : {{ image.image.getVersion('medium').height }}}'
+                     data-bttrlazyloading-lg='{"src": "{{ image.image.getVersion('large').src }}", "width" : {{ image.image.getVersion('large').width }},  "height" : {{ image.image.getVersion('large').height }}}'
+                     alt="{{ image.image.alt }}" credits="{{ image.image.credits }}"
+                />
+
                 <div class="carousel-caption">
                     {{ image.body | raw }}
                 </div>
