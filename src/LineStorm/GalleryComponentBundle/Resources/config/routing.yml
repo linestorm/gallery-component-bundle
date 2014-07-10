@@ -1,0 +1,6 @@
+linestorm_cms_gallery_display:
+  pattern:  /gallery/{id}/{image}
+  defaults: { _controller: LineStormGalleryComponentBundle:Gallery:display, image: 1 }
+  requirements:
+    id: \d+
+    image: \d+
