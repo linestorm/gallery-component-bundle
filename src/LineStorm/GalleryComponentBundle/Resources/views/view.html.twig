@@ -19,6 +19,12 @@
                      alt="{{ image.image.alt }}" credits="{{ image.image.credits }}"
                 />
 
+                <noscript>
+                    <img id="article-img-{{ image.image.id }}" class="article-image lazy-load-image"
+                         src="{{ image.image.getVersion('large').src }}"
+                         alt="{{ image.image.alt }}" credits="{{ image.image.credits }}" />
+                </noscript>
+
                 <div class="carousel-caption">
                     {{ image.body | raw }}
                 </div>
